@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Exhibitions</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #fff173; /* Background color */
+            color: black;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+        }
+        .banner {
+            background-image: url('images/banner.jpg');
+            background-size: 100%;
+            background-position: left;
+            background-repeat: no-repeat;
+            color: black;
+            padding: 50px 0;
+            height: 300px;
+            display: flex;
+            align-items: center;
+        }
+        .banner-content {
+            max-width: 55%;
+            margin-left: auto;
+            padding-right: 80px;
+            text-align: center;
+        }
+        .exhibition {
+            margin-bottom: 40px; /* Space between exhibitions */
+        }
+        .exhibition h2 {
+            font-size: 24px; /* Title size */
+            margin: 10px 0;
+        }
+        .exhibition p {
+            font-size: 18px; /* Description size */
+            color: #333; /* Text color */
+        }
+        .image-gallery {
+            display: grid; /* Use CSS Grid for layout */
+            grid-template-columns: repeat(3, 1fr); /* Three columns */
+            gap: 10px; /* Space between images */
+            padding: 0 20px;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        .image-gallery img {
+            width: 100%; /* Set width to 100% of the container */
+            height: 200px; /* Set a fixed height for the images */
+            object-fit: cover; /* Crop the image to fit the box without distortion */
+            border-radius: 5px; /* Optional: add rounded corners */
+        }
+        @media (max-width: 600px) {
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+            }
+        }
+        @media (max-width: 400px) {
+            .image-gallery {
+                grid-template-columns: 1fr; /* One column on very small screens */
+            }
+        }
+        .menu-icon-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: black;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            z-index: 999;
+            padding-top: 60px;
+        }
+        .sidebar-link {
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            color: #f1f1f1;
+        }
+        .sidebar-link:hover {
+            background-color: black;
+        }
+        .closebtn {
+            font-size: 30px;
+            margin: 10px;
+            cursor: pointer;
+            color: #f1f1f1;
+        }
+        .copyright {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 50px; /* Adjust this value as needed */
+            color: black;
+            font-size: 14px;
+            text-align: center;
+            width: 100%;
+            margin-top: 100px; /* Add space above the copyright */
+        }
+        .content {
+            min-height: calc(100vh - 50px);
+            padding-bottom: 60px; /* Increase padding to create space for copyright */
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:void(0);" class="menu-icon-link" onclick="toggleMenu()">
+        <img src="images/icons/menu.svg" alt="Menu Icon" class="menu-icon">
+    </a>
+    <div id="sidebar" class="sidebar">
+        <a href="index.html" class="sidebar-link">Home</a>
+        <a href="exhibitions.html" class="sidebar-link">Exhibitions</a>
+        <a href="about.html" class="sidebar-link">About Us</a>
+        <a href="javascript:void(0);" class="closebtn" onclick="toggleMenu()">&times;</a>
+    </div>
+
+    <div class="content">
+        <h1>Previous Exhibitions</h1>
+
+        <div class="exhibition">
+            <h2>「與 Dino 一起漫步:啟程」全國巡展</h2>
+            <p>2022 ∙ Shenzhen, China</p>
+            <div class="image-gallery">
+                <img src="images/2022_The_beginning/2022_The_beginning-1.jpg" alt="Exhibition Image 1" loading="lazy">
+                <img src="images/2022_The_beginning/2022_The_beginning-2.jpg" alt="Exhibition Image 2" loading="lazy">
+                <img src="images/2022_The_beginning/2022_The_beginning-3.jpg" alt="Exhibition Image 3" loading="lazy">
+                <img src="images/2022_The_beginning/2022_The_beginning-4.jpg" alt="Exhibition Image 4" loading="lazy">
+                <img src="images/2022_The_beginning/2022_The_beginning-5.jpg" alt="Exhibition Image 5" loading="lazy">
+                <img src="images/2022_The_beginning/2022_The_beginning-6.jpg" alt="Exhibition Image 6" loading="lazy">
+            </div>
+        </div>
+
+        <div class="exhibition">
+            <h2>「Forest Bath 森林浴」Dino 專題藝術展覽</h2>
+            <p>2022 ∙ Macau, China</p>
+            <div class="image-gallery">
+                <img src="images/2022_Forest_bath/2022_Forest_bath-1.jpg" alt="Exhibition Image 1" loading="lazy">
+                <img src="images/2022_Forest_bath/2022_Forest_bath-2.jpg" alt="Exhibition Image 2" loading="lazy">
+                <img src="images/2022_Forest_bath/2022_Forest_bath-3.jpg" alt="Exhibition Image 3" loading="lazy">
+                <img src="images/2022_Forest_bath/2022_Forest_bath-4.jpg" alt="Exhibition Image 4" loading="lazy">
+                <img src="images/2022_Forest_bath/2022_Forest_bath-5.jpg" alt="Exhibition Image 5" loading="lazy">
+                <img src="images/2022_Forest_bath/2022_Forest_bath-6.jpg" alt="Exhibition Image 6" loading="lazy">
+            </div>
+        </div>
+
+        <div class="exhibition">
+            <h2>「50%GreenHouse Workshop」X DINO 展覽</h2>
+            <p>2021 ∙ Macau, China</p>
+            <div class="image-gallery">
+                <img src="images/2021_Greenhouse/2021_Greenhouse-1.jpg" alt="Exhibition Image 1" loading="lazy">
+                <img src="images/2021_Greenhouse/2021_Greenhouse-2.jpg" alt="Exhibition Image 2" loading="lazy">
+                <img src="images/2021_Greenhouse/2021_Greenhouse-3.jpg" alt="Exhibition Image 3" loading="lazy">
+                <img src="images/2021_Greenhouse/2021_Greenhouse-4.jpg" alt="Exhibition Image 4" loading="lazy">
+                <img src="images/2021_Greenhouse/2021_Greenhouse-5.jpg" alt="Exhibition Image 5" loading="lazy">
+                <img src="images/2021_Greenhouse/2021_Greenhouse-6.jpg" alt="Exhibition Image 6" loading="lazy">
+            </div>
+        </div>
+
+        <div class="exhibition">
+            <h2>「Dino Art Toy BOOM」</h2>
+            <p>2020 ∙ Macau, China</p>
+            <div class="image-gallery">
+                <img src="images/2020_Dino_art_toy/2020_Dino_art_toy-1.jpg" alt="Exhibition Image 1" loading="lazy">
+                <img src="images/2020_Dino_art_toy/2020_Dino_art_toy-2.jpg" alt="Exhibition Image 2" loading="lazy">
+                <img src="images/2020_Dino_art_toy/2020_Dino_art_toy-3.jpg" alt="Exhibition Image 3" loading="lazy">
+                <img src="images/2020_Dino_art_toy/2020_Dino_art_toy-4.jpg" alt="Exhibition Image 4" loading="lazy">
+                <img src="images/2020_Dino_art_toy/2020_Dino_art_toy-5.jpg" alt="Exhibition Image 5" loading="lazy">
+                <img src="images/2020_Dino_art_toy/2020_Dino_art_toy-6.jpg" alt="Exhibition Image 6" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        ©️陳紹明工作室 2025
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebar");
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px"; // Hide the sidebar
+            } else {
+                sidebar.style.left = "0px"; // Show the sidebar
+            }
+        }
+    </script>
+</body>
+</html>

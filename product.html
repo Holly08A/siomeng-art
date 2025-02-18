@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeb3b;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            position: relative;
+            text-align: left;
+        }
+        .product-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .image-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+            scroll-snap-type: x mandatory;
+            justify-content: flex-start;
+            min-width: 100%;
+        }
+        .product-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 10px;
+            scroll-snap-align: start;
+        }
+        #email-template-section {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        #email-template {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        #copy-button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #copy-button:hover {
+            background-color: #45a049;
+        }
+        .sold-out-message {
+            color: red;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .size-material-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .details-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .product-accessories, .product-size, .product-material {
+            width: 30%;
+            font-size: 16px;
+        }
+        h3 {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Homepage</a>
+        <div class="image-scroll-container" id="image-scroll-container">
+            <!-- Images will be dynamically inserted here -->
+        </div>
+        <h1 id="product-name" class="product-name">Product Name</h1>
+        <div id="product-description"></div>
+        <p><strong>Price:</strong> <span id="product-price"></span></p>
+
+        <div id="order-section">
+            <p><strong>To order:</strong> Please email us at <a href="mailto:info@siomeng-art.com">info@siomeng-art.com</a></p>
+            <p> Please include your name, address, and phone number in your email.</p>
+            <p> For other currency, please specify in your email.</p>
+        </div>
+
+        <div id="email-template-section">
+            <h3>Email Template:</h3>
+            <textarea id="email-template" rows="5" cols="50" readonly>
+Subject: Order Inquiry - [Product Name]
+
+Dear Siomeng,
+
+I would like to order the following product:
+
+Product Name: [Product Name]
+Product Code: [Product Code]
+Quantity: 1
+
+Your Name:
+Your Address:
+Your Phone Number:
+
+Inquire currency:
+
+Thank you!
+
+Best regards,
+[Your Name]
+            </textarea>
+            <button id="copy-button">Copy Template</button>
+        </div>
+
+        <div id="payment-section">
+            <p><strong>Payment:</strong> Please transfer to our bank account (details provided in our automatic email reply).</p>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productCode = urlParams.get('code');
+        const products = {
+            "D-01": {
+                name: "The Dino Workshop",
+                images: [
+                    "images/D-01/D01-1.jpg",
+                    "images/D-01/D01-2.jpg",
+                    "images/D-01/D01-3.jpg",
+                    "images/D-01/D01-4.jpg"
+                ],
+                price: "US$99.00",
+                description: "<strong>Accessories:</strong><br>Signed and numbered certificate of authenticity x1",
+                size: "H: 26cm, W: 14cm, D: 7.8cm",
+                material: "Vinyl"
+            },
+            "D-02": {
+                name: "Dino: Craftsman",
+                images: [
+                    "images/D-02/D02-1.jpg",
+                    "images/D-02/D02-2.jpg",
+                    "images/D-02/D02-3.jpg",
+                    "images/D-02/D02-4.jpg",
+                    "images/D-02/D02-5.jpg"
+                ],
+                price: "USD$99.00",
+                description: "<strong>Accessories:</strong><br>Hammer x1<br>Pencil x1<br>Thank You Card x1",
+                size: "H: 20cm, W: 14.5cm, D: 7.5cm",
+                material: "Vinyl"
+            },
+            "D-02A": {
+                name: "Dino: Craftsman (BLACK)",
+                images: [
+                    "images/D-02A/D02A-1.jpg",
+                    "images/D-02A/D02A-2.jpg",
+                    "images/D-02A/D02A-3.jpg"
+                ],
+                price: "US$139.00",
+                description: "<strong>Accessories:</strong><br>Hammer x1<br>Pencil x1",
+                size: "H: 20cm, W: 14.5cm, D: 7.5cm",
+                material: "Vinyl"
+            },
+            "D-02B": {
+                name: "Dino: Craftsman (SUNSET)",
+                images: [
+                    "images/D-02B/D02B-1.jpg",
+                    "images/D-02B/D02B-2.jpg",
+                    "images/D-02B/D02B-3.jpg"
+                ],
+                price: "US$139.00",
+                description: "<strong>Accessories:</strong><br>Hammer x1<br>Pencil x1",
+                size: "H: 20cm, W: 14.5cm, D: 7.5cm",
+                material: "Vinyl"
+            },
+            "DC-01": {
+                name: "Dino:Outeraholic",
+                images: [
+                    "images/DC-01/DC01-1.jpg",
+                    "images/DC-01/DC01-2.jpg",
+                    "images/DC-01/DC01-3.jpg",
+                    "images/DC-01/DC01-4.jpg"
+                ],
+                price: "US$239.00",
+                description: "<strong>Accessories:</strong><br>Torch x1<br>Axe head x1<br>Peg x1<br>Kettle x1<br>Coffeemaker x1<br>Camping bag x1<br>First Aid Kit x1<br>Camping lamp x1<br>Signed and numbered certificate of authenticity x1<br>Limited Printing x1",
+                size: "H: 25cm",
+                material: "PU"
+            },
+            "D-03": {
+                name: "Dino:Vision (White)",
+                images: [
+                    "images/D-03/D03-1.jpg"
+                ],
+                price: "US$139.00",
+                description: "<strong>Accessories:</strong><br>None",
+                size: "H: 25.5cm, W: 14cm, D: 11cm",
+                material: "Poly Stone"
+            },
+            "D-04": {
+                name: "Dino:Vision",
+                images: [
+                    "images/D-04/D04-1.jpg"
+                ],
+                price: "US$99.00",
+                description: "<strong>Accessories:</strong><br>Bird x1",
+                size: "H: 23cm (with bird 25cm), W: 13.5cm, D: 10.5cm",
+                material: "Vinyl"
+            },
+            "D-04SE": {
+                name: "Dino:Vision TTF20th SE",
+                images: [
+                    "images/D-04SE/D04SE-1.jpg"
+                ],
+                price: "US$129.00",
+                description: "<strong>Accessories:</strong><br>Bird x1",
+                size: "H: 23cm (with bird 25cm), W: 13.5cm, D: 10.5cm",
+                material: "Vinyl"
+            },
+            "L-01": {
+                name: "Little D",
+                images: [
+                    "images/L-01/L01-1.jpg",
+                    "images/L-01/L01-2.jpg"
+                ],
+                price: "US$79.00",
+                description: "<strong>Accessories:</strong><br>None",
+                size: "H: 12cm",
+                material: "Vinyl"
+            },
+            "L-01A": {
+                name: "Little D (AW24)",
+                images: [
+                    "images/L-01A/L01A-1.jpg"
+                ],
+                price: "US$79.00",
+                description: "<strong>Accessories:</strong><br>None",
+                size: "H: 12cm",
+                material: "Vinyl"
+            }
+        };
+        
+        if (productCode && products[productCode]) {
+            document.getElementById("product-name").textContent = products[productCode].name;
+            document.getElementById("product-price").textContent = products[productCode].price;
+
+            // Create a container for accessories, size, and material
+            const detailsContainer = document.createElement("div");
+            detailsContainer.className = "details-container"; // Add a class for styling
+
+            // Create accessories element
+            const accessoriesElement = document.createElement("div");
+            accessoriesElement.className = "product-accessories"; // Class for styling
+            accessoriesElement.innerHTML = products[productCode].description;
+
+            // Create size element with line breaks
+            const sizeElement = document.createElement("div");
+            sizeElement.className = "product-size"; // Class for styling
+            sizeElement.innerHTML = `<strong>Size:</strong><br>${products[productCode].size.replace(/, /g, '<br>')}`;
+
+            // Create material element with line breaks
+            const materialElement = document.createElement("div");
+            materialElement.className = "product-material"; // Class for styling
+            materialElement.innerHTML = `<strong>Material:</strong><br>${products[productCode].material}`;
+
+            // Append accessories, size, and material to the details container
+            detailsContainer.appendChild(accessoriesElement);
+            detailsContainer.appendChild(sizeElement);
+            detailsContainer.appendChild(materialElement);
+
+            // Clear the existing content and append the details container to the product description section
+            const productDescription = document.getElementById("product-description");
+            productDescription.innerHTML = ""; // Clear any existing content
+            productDescription.appendChild(detailsContainer);
+
+            // Check if the product is sold out
+            if (products[productCode].soldOut) {
+                // Hide the order section, email template section, and payment section
+                document.getElementById("order-section").style.display = "none";
+                document.getElementById("email-template-section").style.display = "none";
+                document.getElementById("payment-section").style.display = "none"; // Hide payment section
+
+                // Optionally, you can display a sold out message
+                const soldOutMessage = document.createElement("div");
+                soldOutMessage.className = "sold-out-message"; // Create a class for styling
+                soldOutMessage.textContent = "Sold Out"; // Set the message text
+                document.getElementById("product-name").appendChild(soldOutMessage); // Append the message under the product name
+            }
+
+            // Populate the image scroll container
+            const imageContainer = document.getElementById("image-scroll-container");
+            products[productCode].images.forEach((imageSrc, index) => {
+                const imgElement = document.createElement("img");
+                imgElement.id = `product-image-${index + 1}`;
+                imgElement.className = "product-img";
+                imgElement.src = imageSrc;
+                imgElement.alt = `Product Image ${index + 1}`;
+                imageContainer.appendChild(imgElement);
+            });
+
+            // Update the email template with product name and code
+            const emailTemplate = document.getElementById("email-template");
+            emailTemplate.value = emailTemplate.value
+                .replace(/\[Product Name\]/g, products[productCode].name)
+                .replace(/\[Product Code\]/g, productCode);
+        }
+
+        document.getElementById("copy-button").addEventListener("click", function() {
+            const emailTemplate = document.getElementById("email-template").value; // Get the value of the textarea
+            navigator.clipboard.writeText(emailTemplate) // Use the Clipboard API to copy the text
+                .then(() => {
+                    alert("Email template copied to clipboard!"); // Alert the user
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err); // Log any errors
+                });
+        });
+    </script>
+</body>
+</html>

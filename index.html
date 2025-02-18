@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siomeng Art</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #fff173;
+            color: black;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+        }
+        .banner {
+            background-image: url('images/banner.jpg');
+            background-size: 100%;
+            background-position: left;
+            background-repeat: no-repeat;
+            color: black;
+            padding: 50px 0;
+            height: 300px;
+            display: flex;
+            align-items: center;
+        }
+        .banner-content {
+            max-width: 55%;
+            margin-left: auto;
+            padding-right: 80px;
+            text-align: center;
+        }
+        #welcome-heading {
+            font-family: 'Monaco', monospace;
+            font-weight: bold;
+            font-size: 36px;
+            margin: 0 0 10px 0;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .product {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .product a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .sold-out-message {
+            color: red;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .last-piece-message {
+            color: blue;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .content {
+            min-height: calc(100vh - 50px);
+            padding-bottom: 70px;
+        }
+        .copyright {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+            color: black;
+            font-size: 14px;
+            text-align: center;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        .instagram-link {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .instagram-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .instagram-label {
+            font-size: 16px;
+        }
+        .menu-icon-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: black;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            z-index: 999;
+            padding-top: 60px;
+        }
+        .sidebar-link {
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            color: #f1f1f1;
+        }
+        .sidebar-link:hover {
+            background-color: black;
+        }
+        .closebtn {
+            font-size: 30px;
+            margin: 10px;
+            cursor: pointer;
+            color: #f1f1f1;
+        }
+        .disclaimer {
+            font-size: 14px;
+            color: black;
+            margin-top: 5px;
+            margin-left: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            .instagram-link {
+                margin: 10px 0; /* Add vertical margin for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:void(0);" class="menu-icon-link" onclick="toggleMenu()">
+        <img src="images/icons/menu.svg" alt="Menu Icon" class="menu-icon">
+    </a>
+    <div id="sidebar" class="sidebar">
+        <a href="index.html" class="sidebar-link">Home</a>
+        <a href="exhibitions.html" class="sidebar-link">Exhibitions</a>
+        <a href="about.html" class="sidebar-link">About Us</a>
+        <a href="javascript:void(0);" class="closebtn" onclick="toggleMenu()">&times;</a>
+    </div>
+    <div class="content">
+        <div class="banner">
+            <div class="banner-content">
+                <h1 id="welcome-heading">Hi, this is Siomeng Art Studio</h1>
+                <p class="disclaimer"><em>Disclaimer: Website's a bit wonky, but my art's top-notch, promise!</em></p>
+                <a href="https://www.instagram.com/siomengchanart?igsh=ZHJ5dWMwOHVoa3Nl" target="_blank" class="instagram-link">
+                    <img src="images/icons/IG.svg" alt="Instagram Icon" class="instagram-icon">
+                    <span class="instagram-label">@siomengchanart</span>
+                </a>
+                <a href="https://www.instagram.com/dino__archive?igsh=MXAwcjRxZHpmdDJxbA==" target="_blank" class="instagram-link">
+                    <img src="images/icons/IG.svg" alt="Dino Archive Icon" class="instagram-icon">
+                    <span class="instagram-label">@dino__archive</span>
+                </a>
+            </div>
+        </div>
+        <div class="products">
+            <script>
+                const products = [
+                    {code: "D-01", name: "The Dino Workshop", image: "images/D-01/D01-1.jpg"},
+                    {code: "D-02", name: "Dino: Craftsman", image: "images/D-02/D02-1.jpg"},
+                    {code: "D-02A", name: "Dino: Craftsman (BLACK)", image: "images/D-02A/D02A-1.jpg", lastPiece: true},
+                    {code: "D-02B", name: "Dino: Craftsman (SUNSET)", image: "images/D-02B/D02B-1.jpg", lastPiece: true},
+                    {code: "DC-01", name: "Dino:Outeraholic", image: "images/DC-01/DC01-1.jpg", lastPiece: true},
+                    {code: "D-03", name: "Dino:Vision (White)", image: "images/D-03/D03-1.jpg", soldOut: true},
+                    {code: "D-04", name: "Dino:Vision", image: "images/D-04/D04-1.jpg", soldOut: true},
+                    {code: "D-04SE", name: "Dino:Vision TTF20th SE", image: "images/D-04-SE/D04SE-1.jpg", soldOut: true},
+                    {code: "L-01", name: "Little D", image: "images/L-01/L01-1.jpg"},
+                    {code: "L-01A", name: "Little D (AW24)", image: "images/L-01A/L01A-1.jpg", lastPiece: true}
+                ];
+                products.forEach(p => {
+                    document.write(`
+                        <div class="product">
+                            <a href="product.html?code=${p.code}">
+                                <img src="${p.image}" alt="${p.name}" class="product-img">
+                            </a>
+                            <a href="product.html?code=${p.code}">${p.name}</a>
+                            ${p.soldOut ? '<div class="sold-out-message">Sold Out</div>' : ''}
+                            ${p.lastPiece ? '<div class="last-piece-message">Last Pieces</div>' : ''}
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </div>
+
+    <div class="copyright">
+        ©️陳紹明工作室 2025
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebar");
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px"; // Hide the sidebar
+            } else {
+                sidebar.style.left = "0px"; // Show the sidebar
+            }
+        }
+    </script>
+</body>
+</html>

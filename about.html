@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            position: relative;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #fff173; /* Background color */
+            color: black;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 40px; /* Space between sections */
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white; /* Background for sections */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .profile {
+            display: flex; /* Use flexbox for layout */
+            align-items: flex-start; /* Align items at the start */
+            justify-content: flex-start; /* Align items to the left */
+            margin-bottom: 20px; /* Space below the profile section */
+        }
+        .profile-pic-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-right: 20px; /* Space between profile and biography */
+        }
+        .profile-pic {
+            border-radius: 50%; /* Round profile picture */
+            width: 150px; /* Set width for profile picture */
+            height: 150px; /* Set height for profile picture */
+            margin-bottom: 10px; /* Space between image and description */
+        }
+        .profile-description {
+            text-align: center; /* Center text under the profile picture */
+            min-width: 290px;
+        }
+        .profile-bio {
+            text-align: left; /* Align biography text to the left */
+            max-width: 1000px; /* Optional: set a max width for better readability */
+            margin-top: 20px; /* Add space above the biography */
+            margin-left: 20px; /* Add left margin for centering */
+            margin-right: auto; /* Allow auto margin on the right for centering */
+        }
+        .background {
+            background-image: url('images/about/dino.jpg'); /* Background image for About Dino */
+            background-size: cover;
+            background-position: center;
+            padding: 40px; /* Padding around the section */
+            color: black; /* Text color for background sections */
+            justify-content: center; /* Center content horizontally */
+            min-height: 400px;
+        }
+        .vision-background {
+            background-image: url('images/about/dino_vision.jpg'); /* Background image for About Dino: Vision */
+            background-size: cover;
+            background-position: left;
+            padding: 40px; /* Padding around the section */
+            color: black; /* Text color for background sections */
+            justify-content: center; /* Center content horizontally */
+            min-height: 400px;
+        }
+        .text-content {
+            max-width: 40%; /* Limit width to 50% */
+            text-align: left; /* Align text to the left */
+            margin: 0; /* Remove any margin */
+            padding: 0; /* Remove any padding */
+        }
+        h2 {
+            font-size: 28px; /* Section title size */
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px; /* Paragraph text size */
+            line-height: 1.5; /* Line height for readability */
+        }
+        /* Sidebar styles */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px; /* Initially hidden */
+            background-color: black;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: 0.3s; /* Smooth transition */
+            z-index: 999;
+            padding-top: 60px;
+        }
+        .sidebar-link {
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            color: #f1f1f1;
+        }
+        .sidebar-link:hover {
+            background-color: #575757; /* Change background on hover */
+        }
+        .closebtn {
+            font-size: 30px;
+            margin: 10px;
+            cursor: pointer;
+            color: #f1f1f1;
+        }
+        .menu-icon-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+        }
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            .profile {
+                flex-direction: column; /* Stack items vertically on small screens */
+                align-items: center; /* Center items horizontally */
+            }
+            .profile-bio {
+                margin-top: 10px; /* Adjust margin for smaller screens */
+                text-align: center; /* Center text on smaller screens */
+                margin-left: 0; /* Remove left margin on small screens */
+                margin-right: 0; /* Remove right margin on small screens */
+            }
+        }
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            color: black;
+            font-size: 14px;
+            text-align: center;
+            width: 100%;
+            margin-top: 100px; /* Adjust as needed */
+            margin-bottom: 0px; /* Adjust as needed */
+        }
+        .contact-info {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            margin-top: 20px; /* Space above the contact info */
+        }
+        .email-icon {
+            width: 24px; /* Set width for the email icon */
+            height: 24px; /* Set height for the email icon */
+            margin-right: 10px; /* Space between icon and email text */
+        }
+        .email-address {
+            font-size: 16px; /* Font size for the email text */
+            color: black; /* Text color for the email */
+        }
+    </style>
+</head>
+<body>
+
+    <a href="javascript:void(0);" class="menu-icon-link" onclick="toggleMenu()">
+        <img src="images/icons/menu.svg" alt="Menu Icon" class="menu-icon">
+    </a>
+    <div id="sidebar" class="sidebar">
+        <a href="index.html" class="sidebar-link">Home</a>
+        <a href="exhibitions.html" class="sidebar-link">Exhibitions</a>
+        <a href="about.html" class="sidebar-link">About Us</a>
+        <a href="javascript:void(0);" class="closebtn" onclick="toggleMenu()">&times;</a>
+    </div>
+
+    <div class="section">
+        <h2>About Siomeng Chan</h2>
+        <div class="profile">
+            <div class="profile-pic-container">
+                <img src="images/about/profile.jpg" alt="Siomeng Chan Profile Picture" class="profile-pic">
+                <div class="profile-description">
+                    <p>中國澳門藝術家、插畫師、設計師<br>
+                    澳門插畫師協會副會長<br>
+                    澳門知識產權產業商會創會成員<br>
+                    深圳市插畫協會 IP 形象委員會專業委員<br>
+                    半熟玩具 50%TOY 聯合創始人<br>
+                    Dino 系列作品創作者</p>
+                </div>
+            </div>
+            <div class="profile-bio">
+                <p>陳紹明(Siomeng Chan)是一位土生土長的澳門藝術家、插畫師和設計師。童年深受日本動畫大師宮崎駿的作品影響，作品中常常埋藏著對自然的幻想與迷思，並以其天馬行空的創作和多元的合作項目在界別中獲得了不少肯定。<br><br>
+                Siomeng 的創作同樣受到日本工匠精神和師徒文化的影響，畢業於澳門理工學院設計系後，2017年成立個人工作室「The Dino Workshop」，作品在澳門和國際上均獲得認可和獎項。<br><br>
+                於2016年由 Siomeng 所造原創角色 Dino 近年廣受喜愛，成為其代表作品之一。過去除了與國際知名品牌 Uniqlo 合作推出服飾外，更與澳門郵電局攜手推出澳門首套 Dino IP 角色郵票。2020年與設計師 Kay Tung 共同創立「半熟 50% TOY」品牌，投入專注於玩具、藝術及 IP 角色發展，迅速獲得關注。<br><br>
+                Siomeng 的作品涵蓋繪畫、設計和立體造型等不同領域，充滿情感和開放的故事性，深受觀眾喜愛。未來將繼續帶來更多驚喜和啟發。</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <img src="images/icons/mail.svg" alt="Email Icon" class="email-icon">
+            <span class="email-address">商業洽談請聯繫 <a href="mailto:info@siomeng-art.com">info@siomeng-art.com</a></span>
+        </div>
+    </div>
+
+    <div class="section background">
+        <div class="text-content">
+            <h2>About Dino</h2>
+            <p>Dino 取名於廣東話「癲佬」的音譯。 Siomeng 認為創作應該是瘋狂的、是可以天馬行空的，創作要時刻抱著一個「癲佬」般的思維，「癲佬」可以是指思維上的瘋狂，也可以是行動上不斷超越常人極限，對他來說就是「不斷超越極限」。</p>
+        </div>
+    </div>
+
+    <div class="section vision-background">
+        <div class="text-content">
+            <h2>About Dino: Vision</h2>
+            <p>Vision 本身具有「遙望、期望、視野」的意思，Dino: Vision 顧名思義就是表達著向前望、期待的意思。創作 Vision 有兩個意義，一是表達著人類對每一樣事物的好奇心，Vision 的手勢就像拿著望遠鏡或放大鏡去探索一樣;其次是在疫情期間透過觀察周圍人的情緒、狀態，感覺大家好像都在這段時間裡期待或等待著某些事情的來臨，比如有些人會在等待運氣、有些人在盼望保住工作、有些人期待找到新方向、有些人在祈禱健康等等。我們無時無刻，似乎都在生命中尋找著某樣事物。</p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        ©️陳紹明工作室 2025
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebar");
+            // Check the current position of the sidebar
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px"; // Hide the sidebar
+            } else {
+                sidebar.style.left = "0px"; // Show the sidebar
+            }
+        }
+    </script>
+
+</body>
+</html>
