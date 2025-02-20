@@ -22,9 +22,12 @@
             background-repeat: no-repeat;
             color: black;
             padding: 50px 0;
-            height: 300px;
+            height: auto;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top:50px;
         }
         .banner-content {
             max-width: 55%;
@@ -35,7 +38,8 @@
         #welcome-heading {
             font-family: 'Monaco', monospace;
             font-weight: bold;
-            font-size: 36px;
+            font-size: 8vw;
+            max-font-size: 36px;
             margin: 0 0 10px 0;
         }
         .products {
@@ -53,6 +57,8 @@
         }
         .product img {
             width: 100%;
+            height: auto;
+            min-width: 200px;
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
@@ -103,12 +109,35 @@
             color: black;
         }
         .instagram-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 5px;
+            width: 10vw; /* Set width relative to viewport width */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 50px; /* Optional: set a maximum width */
+            margin: 0 5px; /* Space between icons */
         }
         .instagram-label {
-            font-size: 16px;
+            font-size: 2.5vw; /* Set font size relative to viewport width */
+            margin-left: 5px; /* Space between icon and label */
+        }
+        /* Media query for larger screens */
+        @media (min-width: 601px) {
+            .instagram-label {
+                font-size: 16px; /* Set a fixed font size for larger screens */
+            }
+        }
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            #welcome-heading {
+                font-size: 6vw;
+            }
+            .banner {
+                padding: 20px 0;
+            }
+            .instagram-link {
+                margin: 10px 0;
+            }
+            .instagram-label {
+                font-size: 14px; /* Set a smaller font size for mobile screens */
+            }
         }
         .menu-icon-link {
             position: fixed;
@@ -154,12 +183,6 @@
             margin-left: 5px;
             margin-bottom: 10px;
             text-align: center;
-        }
-        /* Media query for smaller screens */
-        @media (max-width: 600px) {
-            .instagram-link {
-                margin: 10px 0; /* Add vertical margin for smaller screens */
-            }
         }
     </style>
 </head>
@@ -219,7 +242,7 @@
     </div>
 
     <div class="copyright">
-        ©️陳紹明工作室 2025
+        ©️The Dino Workshop 2025
     </div>
 
     <script>
